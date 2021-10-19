@@ -11,6 +11,8 @@ import {  Link,useHistory } from 'react-router-dom'
 
 /** React Forms **/
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { startLoginEmailPassword } from "../../modules/auth";
 
 /** Definición Input Forms **/
 type Inputs = {
@@ -36,9 +38,12 @@ export const LoginPage: React.FunctionComponent<IPage> = (props) => {
   /** Obtenemos el historial **/
   const history = useHistory();
 
+  /** Instanciamos el dispatch **/
+  const dispatch = useDispatch();
+
   const onSubmit: SubmitHandler<Inputs> = (data) => {
-    // console.log(data);
-    history.push('/')
+    dispatch(startLoginEmailPassword(data?.email,data?.password));
+    history.push('/');
   };
 
   useEffect(() => {

@@ -1,5 +1,3 @@
-//Interfaces 
-
 import IAction from "../interfaces/action";
 import { types } from "../types/types";
 
