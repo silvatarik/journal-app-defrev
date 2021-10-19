@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch, RouteComponentProps } from 'react-router-dom'
-import logging from './config/logging';
 import routes from './config/routes';
 
-export const Applications:React.FunctionComponent = () => {
+export const Applications:React.FunctionComponent<{}> = props => {
+    
     return (
         <div>
              <BrowserRouter>
