@@ -104,13 +104,13 @@ export const LoginPage: React.FunctionComponent<IPage> = (props) => {
           </label>
         )}
         <button
-          className="btn btn-accent w-full mb-2"
+          className="btn btn-primary w-full mb-2"
           type="submit"
         >
           <span>Login</span>
         </button>
         <button
-          className="btn btn-warning w-full"
+          className="btn btn-accent w-full"
           type="button"
         >
           <Link to="/auth/register"><span>SIGN UP</span></Link>
