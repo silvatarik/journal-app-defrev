@@ -5,6 +5,14 @@ import { NotePage } from "../pages/NotePage";
 
 const routes:IRoute[] = [
     {
+        path:'/',
+        name: 'Note Page',
+        component: NotePage,
+        exact:true
+    },
+]
+export const routePublic:IRoute[] = [
+    {
         path:'/auth/login',
         name: 'Login Page',
         component: LoginPage,
@@ -15,13 +23,7 @@ const routes:IRoute[] = [
         name: 'Register Page',
         component: RegisterPage,
         exact:true
-    },
-    {
-        path:'/',
-        name: 'Note Page',
-        component: NotePage,
-        exact:true
-    },
+    }
 ]
 
 export default routes;

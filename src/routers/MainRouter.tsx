@@ -9,7 +9,8 @@ import {
 } from "react-router-dom";
 import { login } from "../actions/auth/authActions";
 import { auth } from "../config/firebase";
-import routes from "../config/routes";
+import routes, { routePublic } from "../config/routes";
+import { ProtectedRoute } from "./ProtectedRoute";
 
 const MainRouter: React.FunctionComponent<{}> = (props) => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ const MainRouter: React.FunctionComponent<{}> = (props) => {
   return (
     <BrowserRouter>
       <Switch>
-        {routes.map((route, index) => {
+      {routePublic.map((route, index) => {
           return (
             <Route
               key={index}
@@ -43,6 +44,25 @@ const MainRouter: React.FunctionComponent<{}> = (props) => {
                     {...routerProps}
                     {...route.props}
                   />
+              )}
+            />
+          );
+        })}
+
+        {routes.map((route, index) => {
+          return (
+            <Route
+              key={index}
+              path={route.path}
+              exact={route.exact}
+              render={(routerProps: RouteComponentProps<any>) => (
+                <ProtectedRoute>
+                  <route.component
+                    name={route.name}
+                    {...routerProps}
+                    {...route.props}
+                  />
+                </ProtectedRoute>
               )}
             />
           );
