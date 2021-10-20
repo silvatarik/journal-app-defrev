@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Journal } from "../components/notes/journal/Journal";
 import logging from "../config/logging";
 import IPage from "../interfaces/page";

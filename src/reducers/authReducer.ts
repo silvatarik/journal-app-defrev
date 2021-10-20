@@ -7,7 +7,7 @@ const defaultState = {
   authethicated: false,
 };
 
-export const authReducer = (state = {}, action: IAction) => {
+export const authReducer = (state = defaultState, action: IAction) => {
   switch (action.type) {
     case types.login:
       return {

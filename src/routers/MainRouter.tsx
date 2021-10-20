@@ -10,6 +10,7 @@ import {
 import { login } from "../actions/auth/authActions";
 import { auth } from "../config/firebase";
 import routes, { routePublic } from "../config/routes";
+import { startLoadingNotes } from "../modules/notes";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { PublicRoutes } from "./PublicRoutes";
 
@@ -21,6 +22,7 @@ const MainRouter: React.FunctionComponent<{}> = (props) => {
       if (user?.uid) {
         if (user.uid != null && user.displayName != null) {
           dispatch(login(user.uid, user.displayName));
+          dispatch(startLoadingNotes(user.uid));
         }
       }
     });

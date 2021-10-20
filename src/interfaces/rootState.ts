@@ -1,5 +1,17 @@
-import IUser from "./user";
+import INote from "./note";
 
 export default interface IRootState {
-    auth: IUser;
+    auth?: IUser;
+    notes?:INotes;
+}
+
+export interface IUser {
+    uid: string;
+    name: string;
+    authethicated:boolean;
+}
+
+export interface INotes{
+    id:string;
+    notes:INote;
 }
