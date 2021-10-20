@@ -1,8 +1,10 @@
-import { signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile} from "firebase/auth";
-import { login } from "../actions/auth/authActions";
+import { signInWithEmailAndPassword,createUserWithEmailAndPassword,updateProfile,signOut} from "firebase/auth";
+import { login, logout } from "../actions/auth/authActions";
 import { auth } from "../config/firebase";
 import logging from "../config/logging";
 
+
+/** Login **/
 export const startLoginEmailPassword = (email: string, password: string) => {
   return (dispatch: any) => {
     signInWithEmailAndPassword(auth, email, password)
@@ -19,6 +21,8 @@ export const startLoginEmailPassword = (email: string, password: string) => {
   }
 }
 
+/** Register **/
+
 export const startRegisterWithEmailPassword = (email:string, password:string, name:string) => {
   return (dispatch:any) => {
       createUserWithEmailAndPassword(auth, email, password)
@@ -31,6 +35,19 @@ export const startRegisterWithEmailPassword = (email:string, password:string, na
             const errorMessage = error.message;
             logging.error(errorMessage);
           });
+  }
+}
+
+/** Logout **/
+export const startLogout = () => {
+  return (dispatch:any) => {
+      signOut(auth).then(() => {
+          dispatch(logout());
+      }, function (error) {
+        const errorMessage = error.message;
+        logging.error(errorMessage);
+      });
+
   }
 }
 

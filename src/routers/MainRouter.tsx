@@ -1,5 +1,5 @@
 import { onAuthStateChanged } from "@firebase/auth";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import {
   BrowserRouter,
@@ -11,39 +11,38 @@ import { login } from "../actions/auth/authActions";
 import { auth } from "../config/firebase";
 import routes, { routePublic } from "../config/routes";
 import { ProtectedRoute } from "./ProtectedRoute";
+import { PublicRoutes } from "./PublicRoutes";
 
 const MainRouter: React.FunctionComponent<{}> = (props) => {
   const dispatch = useDispatch();
-  const [isAunthenthicate, setisAunthenthicate] = useState<boolean>(false);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user?.uid) {
         if (user.uid != null && user.displayName != null) {
           dispatch(login(user.uid, user.displayName));
-          setisAunthenthicate(true);
         }
-      } else {
-        setisAunthenthicate(false);
       }
     });
-  }, [auth, dispatch, setisAunthenthicate]);
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
       <Switch>
-      {routePublic.map((route, index) => {
+        {routePublic.map((route, index) => {
           return (
             <Route
               key={index}
               path={route.path}
               exact={route.exact}
               render={(routerProps: RouteComponentProps<any>) => (
+                <PublicRoutes>
                   <route.component
                     name={route.name}
                     {...routerProps}
                     {...route.props}
                   />
+                </PublicRoutes>
               )}
             />
           );

@@ -9,3 +9,7 @@ export const login = (uid: string, displayName: string) => {
       }
     }
 }
+
+export const logout = () => ({
+  type: types.logout
+})
