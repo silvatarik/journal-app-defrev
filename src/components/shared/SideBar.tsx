@@ -5,7 +5,7 @@ import { Entries } from '../notes/entries/Entries'
 
 export const SideBar:React.FunctionComponent<{}> = props => {
     return (
-        <div className="flex flex-col h-full overflow-auto w-96 items-center text-center bg-teal-900 text-gray-400 border-r">
+        <div className="flex flex-col h-screen w-500 items-center text-center bg-teal-900 text-gray-400 border-r">
             <span className="my-3 text-3xl"> Journal App </span>
             <ul className="menu px-3 shadow-lg bg-base-100 rounded-box horizontal">
                 <li>

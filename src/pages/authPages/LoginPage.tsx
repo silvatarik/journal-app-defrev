@@ -112,8 +112,9 @@ export const LoginPage: React.FunctionComponent<IPage> = (props) => {
         <button
           className="btn btn-accent w-full"
           type="button"
+          onClick={()=> history.push("/auth/register")}
         >
-          <Link to="/auth/register"><span>SIGN UP</span></Link>
+          <span>SIGN UP</span>
         </button>
       </form>
     </div>

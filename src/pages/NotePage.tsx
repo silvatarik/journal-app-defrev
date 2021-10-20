@@ -10,7 +10,7 @@ export const NotePage: React.FunctionComponent<IPage> = (props) => {
   }, [props.name]);
 
   return (
-      <div>
+      <div className="h-screen">
         <Journal/>
       </div>
   );

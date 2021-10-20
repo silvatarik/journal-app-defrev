@@ -12,7 +12,6 @@ import { auth } from "../config/firebase";
 import routes from "../config/routes";
 
 const MainRouter: React.FunctionComponent<{}> = (props) => {
-
   const dispatch = useDispatch();
   const [isAunthenthicate, setisAunthenthicate] = useState<boolean>(false);
 
@@ -20,8 +19,8 @@ const MainRouter: React.FunctionComponent<{}> = (props) => {
     onAuthStateChanged(auth, (user) => {
       if (user?.uid) {
         if (user.uid != null && user.displayName != null) {
-            dispatch(login(user.uid, user.displayName));
-            setisAunthenthicate(true);
+          dispatch(login(user.uid, user.displayName));
+          setisAunthenthicate(true);
         }
       } else {
         setisAunthenthicate(false);
@@ -39,11 +38,11 @@ const MainRouter: React.FunctionComponent<{}> = (props) => {
               path={route.path}
               exact={route.exact}
               render={(routerProps: RouteComponentProps<any>) => (
-                <route.component
-                  name={route.name}
-                  {...routerProps}
-                  {...route.props}
-                />
+                  <route.component
+                    name={route.name}
+                    {...routerProps}
+                    {...route.props}
+                  />
               )}
             />
           );

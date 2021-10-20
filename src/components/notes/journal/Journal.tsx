@@ -4,11 +4,11 @@ import { SideBar } from '../../shared/SideBar'
 
 export const Journal:React.FunctionComponent<{}> = props => {
     return (
-        <div className="flex h-screen antialiased text-gray-900 bg-gray-100">
-            <SideBar />
-            <div className="w-full h-full">
+        <div className="h-full flex antialiased text-gray-900 bg-gray-100">
+            <SideBar/>
+            <div className="w-full">
                 <NavBar />
-                <div className="p-10 bg-base-200 mx-4 mt-3">
+                <div className="p-10 bg-base-200 mt-3">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-2xl">Note Title</span>
