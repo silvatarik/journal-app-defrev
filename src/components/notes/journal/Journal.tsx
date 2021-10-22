@@ -30,6 +30,10 @@ export const Journal: React.FunctionComponent<{}> = (props) => {
 
   }, [currentNote]);
 
+  const handleImage = () => {
+    setValue("url", currentNote.notes?.url);
+  }
+
   return (
     <>
       <div className="w-full">
@@ -68,9 +72,10 @@ export const Journal: React.FunctionComponent<{}> = (props) => {
               />
             </div>
             <img
-              src="https://picsum.photos/seed/picsum/200/300"
+              src={(currentNote !== null && currentNote.notes?.url !== '') ? currentNote.notes?.url : "https://picsum.photos/seed/picsum/200/300"}
               alt="random img"
-              className="mx-auto mask mask-squircle"
+              className="mx-auto mask mask-squircle h-60"
+              onChange={handleImage}
             />
           </div>
         </form>

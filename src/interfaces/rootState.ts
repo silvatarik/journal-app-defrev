@@ -14,4 +14,5 @@ export interface IUser {
 export interface INotes{
     id:string;
     notes:INote;
+    active?:any;
 }

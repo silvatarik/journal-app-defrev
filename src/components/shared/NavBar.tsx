@@ -1,19 +1,39 @@
-import { useDispatch} from "react-redux";
-import { ActiveNotes } from "../../actions/notesActions";
+import { useDispatch, useSelector } from "react-redux";
+import { ActiveNotes, refreshJournal } from "../../actions/notesActions";
+import { sweetAlertSaving } from "../../helpers/alertModals";
 import INote from "../../interfaces/note";
-import { startSaveNote } from "../../modules/notes";
+import IRootState, { INotes } from "../../interfaces/rootState";
+import { startSaveNote, startUploading } from "../../modules/notes";
 
 interface IProps {
-  id:string;
-  note:INote;
+  id: string;
+  note: INote;
 }
 
 export const NavBar = (props: IProps) => {
-  const dispatch = useDispatch(); 
+  let fileButton= document.querySelector("#fileSelector") as HTMLElement;;
+  const dispatch = useDispatch();
+  const data: any = useSelector((state: IRootState) => state.notes);
+  const currentNote: INotes = data.active;
 
   const handleSave = () => {
+    sweetAlertSaving('Guardando las notas')
+
     dispatch(ActiveNotes(props.id, props.note));
-    dispatch(startSaveNote({id:props.id, notes:props.note}));
+    dispatch(startSaveNote({id:props.id,notes:{
+      ...props.note,url:currentNote.notes.url
+    }}));
+    
+    dispatch(refreshJournal());
+  };
+
+  const handlePictureClick = () => {
+    fileButton.click();
+  };
+  const handleFileChange = (e: any) => {
+    const file = e.target.files[0];
+    if (file) dispatch(startUploading(file));
+    // fileButton.value = '';
   };
 
   return (
@@ -25,7 +45,17 @@ export const NavBar = (props: IProps) => {
       </div>
       <div className="flex-none px-2 mx-2 lg:flex">
         <div className="flex items-stretch">
-          <button className="btn btn-ghost btn-sm rounded-btn">
+          <input
+            type="file"
+            name="file"
+            id="fileSelector"
+            onChange={handleFileChange}
+            style={{ display: 'none' }}
+          />
+          <button
+            className="btn btn-ghost btn-sm rounded-btn"
+            onClick={handlePictureClick}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6 mr-2"

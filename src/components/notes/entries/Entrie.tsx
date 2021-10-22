@@ -17,7 +17,7 @@ export const Entrie: React.FunctionComponent<INotes> = (props) => {
       title: noteValues?.title || '',
       body: noteValues?.body || '',
       date: noteValues?.date || moment(new Date().getTime()).format('ll'),
-      url: noteValues?.url || ''
+      url: noteValues?.url || 'https://picsum.photos/seed/picsum/200/300'
     }
     dispatch(ActiveNotes(props.id,updNote));
   }
@@ -29,8 +29,8 @@ export const Entrie: React.FunctionComponent<INotes> = (props) => {
       className="cursor-pointer overflow-x-hidden border rounded-md p-3 bg-white flex text-gray-700 mb-2 hover:border-green-500 focus:outline-none focus:border-green-500"
     >
       <img
-        className="h-28 w-full rounded-md"
-        src="https://picsum.photos/seed/picsum/200/300"
+        className="h-28 w-20 rounded-md"
+        src={(noteValues?.url !== '') ? noteValues?.url : "https://picsum.photos/seed/picsum/200/300"}
         alt="img random"
       />
       <div className="flex-1">

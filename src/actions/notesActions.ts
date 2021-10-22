@@ -35,3 +35,8 @@ export const deleteNote = (id:string) => ({
   type: types.notesDelete,
   payload: id
 })
+
+export const refreshJournal = () => ({
+  type: types.noteRefreshJournal,
+  payload: ''
+})

@@ -1,5 +1,4 @@
 import IAction from "../interfaces/action";
-// import { INotes } from "../interfaces/rootState";
 import { types } from "../types/types";
 
 const initialState = {
@@ -33,13 +32,18 @@ export const notesReducer = (state = initialState, action: IAction) => {
         ),
       };
     case types.notesDelete:
-      // console.log(state.notes.filter((note,index) => state.notes[index]["id"] !== action.payload))
       return {
         ...state,
         notes: [
           ...state.notes.filter((note,index) => state.notes[index]["id"] !== action.payload),
         ],active:null,
       };
+    case types.noteRefreshJournal:
+      return {
+        ...state,
+        notes:[...state.notes],active:null,
+      }
+    
     default:
       return state;
   }
