@@ -30,3 +30,8 @@ export const refreshNotes = (note: INotes) => ({
     ...note
   },
 });
+
+export const deleteNote = (id:string) => ({
+  type: types.notesDelete,
+  payload: id
+})

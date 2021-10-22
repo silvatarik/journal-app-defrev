@@ -6,9 +6,11 @@ import {
   addDoc,
   getDocs,
   doc,
-  updateDoc
+  updateDoc,
+  deleteDoc
 } from "firebase/firestore";
-import { ActiveNotes, addNewNote, refreshNotes, setNotes } from "../actions/notesActions";
+import { ActiveNotes, addNewNote, deleteNote, refreshNotes, setNotes } from "../actions/notesActions";
+import logging from "../config/logging";
 
 
 /** Crear notes **/
@@ -18,8 +20,8 @@ export const startNewNotes = () => {
     const uid = state.auth?.uid;
 
     const newNote: INote = {
-      title: "Titulo por Defecto",
-      body: "No body",
+      title: "",
+      body: "",
       date: new Date().getTime().toString(),
       url: "",
     };
@@ -32,7 +34,6 @@ export const startNewNotes = () => {
     dispatch(addNewNote(doc.id, newNote));
   };
 };
-
 
 /**  Cargar las notas **/
 
@@ -65,13 +66,34 @@ export const loadNotes = async (uid: string) => {
 /**  Guardar las notas **/
 export const startSaveNote = (note:INotes) => {
   return async (dispatch:any, getState:any) => {
-      const uid = getState().auth.uid;
+
+    const state: IRootState = getState();
+    const uid = state.auth?.uid;
+
       const noteToFireStore = { ...note.notes };
       const noteRef = doc(db, `${uid}/journal/notes/${note.id}`);
 
       await updateDoc(noteRef, noteToFireStore);
       dispatch(refreshNotes(note));
       // sweetAlertSaving('Guardado con Exito');
+  }
+}
+
+/**  Eliminar las notas **/
+export const startDeleteNote = (id:string) => {
+  return async (dispatch:any, getState:any) => {
+    const state: IRootState = getState();
+    const uid = state.auth?.uid;
+
+      const noteRef = doc(db, `${uid}/journal/notes/${id}`);
+
+      try {
+          await deleteDoc(noteRef);
+          dispatch(deleteNote(id));
+      } catch (error) {
+        logging.error(error);
+      }
+
   }
 }
 

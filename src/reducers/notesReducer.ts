@@ -26,14 +26,20 @@ export const notesReducer = (state = initialState, action: IAction) => {
         notes: [...action.payload],
       };
     case types.notesUpdated:
-    //   return {
-    //     ...state,
-    //     notes: state.notes.notes.map((note:any) =>
-    //       note.id === action.payload.id ? action.payload.note : note
-    //     ),
-    //   };
-    console.log(action)
-    break;
+      return {
+        ...state,
+        notes: state.notes.map((note: any, index) =>
+          state.notes[index]["id"] === action.payload.id ? action.payload : note
+        ),
+      };
+    case types.notesDelete:
+      // console.log(state.notes.filter((note,index) => state.notes[index]["id"] !== action.payload))
+      return {
+        ...state,
+        notes: [
+          ...state.notes.filter((note,index) => state.notes[index]["id"] !== action.payload),
+        ],active:null,
+      };
     default:
       return state;
   }

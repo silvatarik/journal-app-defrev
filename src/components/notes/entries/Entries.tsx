@@ -6,7 +6,6 @@ import { Entrie } from "./Entrie";
 
 export const Entries: React.FunctionComponent<{}>= props => {
   const data:any = useSelector((state:IRootState) => state.notes);
-  
   return (
     <div className="mt-3 h-full overflow-y-scroll ">
       {

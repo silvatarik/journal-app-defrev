@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
-
-import logging from "../../config/logging";
+import React from "react";
 
 /** Interfaces **/
 import IPage from "../../interfaces/page";
 
 /** React Router DOM **/
 import { useHistory } from 'react-router-dom'
-
 
 /** React Forms **/
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -46,9 +43,9 @@ export const LoginPage: React.FunctionComponent<IPage> = (props) => {
     history.push('/');
   };
 
-  useEffect(() => {
-    logging.info(`Loading ${props.name}`);
-  }, [props.name]);
+  // useEffect(() => {
+  //   logging.info(`Loading ${props.name}`);
+  // }, [props.name]);
 
   return (
     <div className="w-screen h-screen flex justify-center items-center bg-gray-100">

@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-import logging from "../../config/logging";
+import React from "react";
 
 /** Interfaces **/
 import IPage from "../../interfaces/page";
@@ -30,9 +29,9 @@ export const RegisterPage: React.FunctionComponent<IPage> = (props) => {
   const dispatch = useDispatch();
   const history  = useHistory();
 
-  useEffect(() => {
-    logging.info(`Loading ${props.name}`);
-  }, [props.name]);
+  // useEffect(() => {
+  //   logging.info(`Loading ${props.name}`);
+  // }, [props.name]);
 
   /** Desestructuración de las prop del Hook **/
   const {

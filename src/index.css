@@ -26,3 +26,8 @@
   ::-webkit-scrollbar-thumb:hover {
     background: #555; 
   }
+
+  .selected{
+    position: absolute;
+    left: 0;
+  }
